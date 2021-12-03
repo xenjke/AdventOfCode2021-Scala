@@ -24,4 +24,24 @@ case class Day2(session: String) {
     horizontal * depth
   }
 
+  def partTwo(): Int = {
+    var horizontal, depth, aim: Int = 0
+
+    input.foreach(command => {
+      val commandTuple = command.split(" ")
+      val direction = commandTuple.head
+      val units = commandTuple.last.toInt
+
+      direction match {
+        case "forward" =>
+          horizontal += units
+          depth += aim * units
+        case "down" => aim += units
+        case "up" => aim -= units
+      }
+    })
+
+    horizontal * depth
+  }
+
 }

@@ -8,4 +8,8 @@ class Day2Test extends AsyncFunSuite {
   test("part one") {
     assert(day2.partOne() === 1561344)
   }
+
+  test("part two") {
+    assert(day2.partTwo() === 1848454425)
+  }
 }
