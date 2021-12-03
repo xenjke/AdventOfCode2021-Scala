@@ -2,18 +2,38 @@ package DailyTasks
 
 import Helpers.GetInput
 
-case object Day1 {
-  def task(session: String = ""): Int = {
-    val day1Input = GetInput(session).forDayArray(1)
+case class Day1(session: String) {
+  val dayNumber = 1
+  val input: Array[String] = GetInput(session).forDayArray(dayNumber)
 
+  def partOne(): Int = {
     var increases: Int = 0
-    var base = day1Input.head.toInt
+    var base = input.head.toInt
 
-    day1Input.foreach(value => {
-      if (value.toInt > base) increases = increases + 1
+    input.foreach(value => {
+      if (value.toInt > base) increases += 1
       base = value.toInt
     })
 
     increases
+  }
+
+  def partTwo(): Int = {
+    var base = 0
+    var timesBigger: Int = 0
+
+    input.zipWithIndex.foreach { case (elem, idx) =>
+      if (idx + 2 > input.length - 1) {
+        // no 3rd element to fetch, nothing
+      } else {
+        val sum: Int = elem.toInt + input(idx + 1).toInt + input(idx + 2).toInt
+        if (base != 0 && sum > base) {
+          timesBigger += 1
+        }
+        base = sum
+      }
+    }
+
+    timesBigger
   }
 }
