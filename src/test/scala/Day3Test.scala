@@ -10,6 +10,6 @@ class Day3Test extends AsyncFunSuite {
   }
 
   test("part two") {
-    assert(day3.partTwo() === 0)
+    assert(day3.partTwo() === 6775520)
   }
 }
